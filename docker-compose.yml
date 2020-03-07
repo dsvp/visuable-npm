@@ -1,0 +1,13 @@
+version: "3"
+services:
+  visuable-storybook:
+    restart: always
+    container_name: visuable-storybook
+    image: visuable-storybook
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./storybook
+    volumes:
+      - ./storybook/:/app
+    ports:
+      - "6006:6006"
