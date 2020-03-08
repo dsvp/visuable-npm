@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css } from "@emotion/core";
 
 type ButtonProps = {
   /** 버튼 안의 내용 */
@@ -7,15 +7,13 @@ type ButtonProps = {
   /** 클릭했을 때 호출할 함수 */
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   /** 버튼의 생김새를 설정합니다. */
-  theme: 'primary' | 'secondary' | 'tertiary';
+  theme: "black" | "white" | "blue" | "red" | "transparent";
   /** 버튼의 크기를 설정합니다. */
-  size: 'small' | 'medium' | 'big';
+  size: "small" | "medium" | "big";
   /** 버튼을 비활성화 시킵니다. */
   disabled?: boolean;
   /** 버튼의 너비를 임의로 설정합니다. */
   width?: string | number;
-  /** 버튼에서 아이콘만 보여줄 때 이 값을 `true`로 설정하세요. */
-  iconOnly?: boolean;
 };
 
 /** `Button` 컴포넌트는 어떠한 작업을 트리거 할 때 사용합니다.  */
@@ -25,18 +23,12 @@ const Button = ({
   size,
   disabled,
   width,
-  iconOnly,
   onClick
 }: ButtonProps) => {
   return (
     <button
-      css={[
-        style,
-        themes[theme],
-        sizes[size],
-        { width },
-        iconOnly && [iconOnlyStyle, iconOnlySizes[size]]
-      ]}
+      className={"visuable-button-" + theme}
+      css={[style, themes[theme], sizes[size], { width }]}
       disabled={disabled}
       onClick={onClick}
     >
@@ -46,11 +38,14 @@ const Button = ({
 };
 
 Button.defaultProps = {
-  theme: 'primary',
-  size: 'medium'
+  children: "button",
+  theme: "black",
+  size: "medium",
+  width: "auto"
 };
 
 const style = css`
+  cursor: pointer;
   outline: none;
   border: none;
   box-sizing: border-box;
@@ -60,6 +55,7 @@ const style = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, color 0.2s;
   &:focus {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   }
@@ -73,57 +69,99 @@ const style = css`
 `;
 
 const themes = {
-  primary: css`
-    background: #20c997;
-    color: white;
+  black: css`
+    background: #232323;
+    color: #fff;
     svg {
-      fill: white;
+      fill: #fff;
     }
     &:hover:enabled {
-      background: #38d9a9;
+      background: #555;
     }
     &:active:enabled {
-      background: #12b886;
+      background: #555;
     }
     &:disabled {
-      background: #aed9cc;
-    }
-  `,
-  secondary: css`
-    background: #e9ecef;
-    color: #343a40;
-    svg {
-      fill: #343a40;
-    }
-    &:hover:enabled {
-      background: #f1f3f5;
-    }
-    &:active:enabled {
-      background: #dee2e6;
-    }
-    &:disabled {
-      color: #c6d3e1;
+      background: #555;
+      color: #eee;
       svg {
-        fill: #c6d3e1;
+        fill: #eee;
       }
     }
   `,
-  tertiary: css`
-    background: none;
-    color: #20c997;
+  white: css`
+    background: #f5f5f5;
+    color: #000;
     svg {
-      fill: #20c997;
+      fill: #000;
     }
     &:hover:enabled {
-      background: #e6fcf5;
+      background: #fff;
     }
     &:active:enabled {
-      background: #c3fae8;
+      background: #fff;
     }
     &:disabled {
-      color: #bcd9d0;
+      color: #555;
       svg {
-        fill: #bcd9d0;
+        fill: #555;
+      }
+    }
+  `,
+  blue: css`
+    background: #0775c4;
+    color: #fff;
+    svg {
+      fill: #fff;
+    }
+    &:hover:enabled {
+      background: #2da4fb;
+    }
+    &:active:enabled {
+      background: #2da4fb;
+    }
+    &:disabled {
+      color: #70c3ff;
+      svg {
+        fill: #70c3ff;
+      }
+    }
+  `,
+  red: css`
+    background: #f61229;
+    color: #fff;
+    svg {
+      fill: #fff;
+    }
+    &:hover:enabled {
+      background: #fb3232;
+    }
+    &:active:enabled {
+      background: #fb3232;
+    }
+    &:disabled {
+      color: #e25656;
+      svg {
+        fill: #e25656;
+      }
+    }
+  `,
+  transparent: css`
+    background: transparent;
+    color: #000;
+    svg {
+      fill: #000;
+    }
+    &:hover:enabled {
+      background: transparent;
+    }
+    &:active:enabled {
+      background: transparent;
+    }
+    &:disabled {
+      color: #a59a9a;
+      svg {
+        fill: #a59a9a;
       }
     }
   `
@@ -144,26 +182,6 @@ const sizes = {
     height: 3rem;
     font-size: 1.125rem;
     padding: 0 1.5rem;
-  `
-};
-
-const iconOnlyStyle = css`
-  padding: 0;
-  border-radius: 50%;
-  svg {
-    margin: 0;
-  }
-`;
-
-const iconOnlySizes = {
-  small: css`
-    width: 1.75rem;
-  `,
-  medium: css`
-    width: 2.5rem;
-  `,
-  big: css`
-    width: 3rem;
   `
 };
 
