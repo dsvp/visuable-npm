@@ -49,39 +49,32 @@ const thumbnailWrapper = css`
 `;
 
 export const allThumbnails = () => {
+  const width = text("width", "100%");
+  const height = text("height", "600px");
+  const fade = number("fade", 0);
+  const opacity = number("opacity", 1);
   return (
     <div css={thumbnailWrapper}>
       <div className="thumbnails">
         <div className="description">image</div>
-        <Thumbnail type="image" src="https://source.unsplash.com/daily?kitty" />
+        <Thumbnail
+          type="image"
+          src="https://source.unsplash.com/daily?kitty"
+          width={width}
+          height={height}
+          fade={fade}
+          opacity={opacity}
+        />
       </div>
       <div className="thumbnails">
         <div className="description">video</div>
-        <Thumbnail type="video" src="https://bolbbalgan4.com/videos/bol4-2" />
-      </div>
-    </div>
-  );
-};
-
-export const customSized = () => {
-  return (
-    <div css={thumbnailWrapper}>
-      <div className="thumbnails-custom">
-        <div className="description">image 200 x 300</div>
         <Thumbnail
-          width="200px"
-          height="300px"
-          type="image"
-          src="https://source.unsplash.com/daily?kitty"
-        />
-      </div>
-      <div className="thumbnails-custom">
-        <div className="description">video 300 x 200</div>
-        <Thumbnail
-          width="300px"
-          height="200px"
           type="video"
           src="https://bolbbalgan4.com/videos/bol4-2"
+          width={width}
+          height={height}
+          fade={fade}
+          opacity={opacity}
         />
       </div>
     </div>

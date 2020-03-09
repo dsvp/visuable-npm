@@ -43,24 +43,23 @@ const boxWrapper = css`
 `;
 
 export const allBoxes = () => {
+  const children = text("children", "Box");
+  const width = text("width", "auto");
+  const height = text("height", "auto");
+  const padding = text("padding", "30px");
+  const background = text("background", "#f5f5f5");
   return (
     <div css={boxWrapper}>
       <div>
         <div className="description">normal</div>
-        <Box>box</Box>
-      </div>
-    </div>
-  );
-};
-
-export const customSized = () => {
-  return (
-    <div css={boxWrapper}>
-      <div>
-        <Box width="20rem"> box</Box>
-      </div>
-      <div>
-        <Box width="100%">box</Box>
+        <Box
+          width={width}
+          height={height}
+          padding={padding}
+          background={background}
+        >
+          {children}
+        </Box>
       </div>
     </div>
   );

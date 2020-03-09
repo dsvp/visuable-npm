@@ -11,7 +11,7 @@ export default {
 };
 
 export const button = () => {
-  const label = text("children", "BUTTON");
+  const children = text("children", "BUTTON");
   const size = select("size", ["small", "medium", "big"], "medium");
   const theme = select(
     "theme",
@@ -20,7 +20,6 @@ export const button = () => {
   );
   const disabled = boolean("disabled", false);
   const width = text("width", "");
-
   return (
     <Button
       size={size}
@@ -29,7 +28,7 @@ export const button = () => {
       width={width}
       onClick={action("onClick")}
     >
-      {label}
+      {children}
     </Button>
   );
 };
@@ -49,96 +48,46 @@ const buttonWrapper = css`
 `;
 
 export const allButtons = () => {
+  const children = text("children", "BUTTON");
+  const size = select("size", ["small", "medium", "big"], "medium");
+  const disabled = boolean("disabled", false);
+  const width = text("width", "");
   return (
     <div css={buttonWrapper}>
       <div>
         <div className="description">black</div>
-        <Button theme="black">button</Button>
-      </div>
-      <div>
-        <div className="description">white</div>
-        <Button theme="white">button</Button>
-      </div>
-      <div>
-        <div className="description">blue</div>
-        <Button theme="blue">button</Button>
-      </div>
-      <div>
-        <div className="description">red</div>
-        <Button theme="red">button</Button>
-      </div>
-      <div>
-        <div className="description">transparent</div>
-        <Button theme="transparent">button</Button>
-      </div>
-    </div>
-  );
-};
-
-export const disabled = () => {
-  return (
-    <div css={buttonWrapper}>
-      <div>
-        <div className="description">black</div>
-        <Button disabled theme="black">
-          button
+        <Button theme="black" size={size} disabled={disabled} width={width}>
+          {children}
         </Button>
       </div>
       <div>
         <div className="description">white</div>
-        <Button disabled theme="white">
-          button
+        <Button theme="white" size={size} disabled={disabled} width={width}>
+          {children}
         </Button>
       </div>
       <div>
         <div className="description">blue</div>
-        <Button disabled theme="blue">
-          button
+        <Button theme="blue" size={size} disabled={disabled} width={width}>
+          {children}
         </Button>
       </div>
       <div>
         <div className="description">red</div>
-        <Button disabled theme="red">
-          button
+        <Button theme="red" size={size} disabled={disabled} width={width}>
+          {children}
         </Button>
       </div>
       <div>
         <div className="description">transparent</div>
-        <Button disabled theme="transparent">
-          button
+        <Button
+          theme="transparent"
+          size={size}
+          disabled={disabled}
+          width={width}
+        >
+          {children}
         </Button>
-      </div>
-    </div>
-  );
-};
-
-export const sizes = () => {
-  return (
-    <div css={buttonWrapper}>
-      <div>
-        <div className="description">small</div>
-        <Button size="small">BUTTON</Button>
-      </div>
-      <div>
-        <div className="description">medium</div>
-        <Button size="medium">BUTTON</Button>
-      </div>
-      <div>
-        <div className="description">big</div>
-        <Button size="big">BUTTON</Button>
-      </div>
-    </div>
-  );
-};
-
-export const customSized = () => {
-  return (
-    <div css={buttonWrapper}>
-      <div>
-        <Button width="20rem">CUSTOM WIDTH</Button>
-      </div>
-      <div>
-        <Button width="100%">FULL WIDTH</Button>
       </div>
     </div>
   );
